@@ -117,9 +117,7 @@ export default {
   async mounted() {
     this.fetchProducts();
   },
-  // async created() {
-  //   this.fetchProducts();
-  // },
+
   methods: {
     fetchProducts() {
       const url = `https://dummyjson.com/products/search?q=${this.searchQuery}`;

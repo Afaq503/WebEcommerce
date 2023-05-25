@@ -3,7 +3,6 @@
     <HeaderView />
     <v-container v-if="product">
       <v-card>
-        <!-- Display product details here -->
         <v-card-title class="text-h5">{{ product.title }}</v-card-title>
         <v-img
           :src="product.thumbnail"
@@ -21,7 +20,6 @@
           <div>Brand: {{ product.brand }}</div>
           <div>Category: {{ product.category }}</div>
           <div>Description: {{ product.description }}</div>
-          <!-- Additional product details -->
         </v-card-text>
         <v-slide-group v-model="model" selected-class="bg-success" show-arrows>
           <v-slide-group-item v-for="image in product.images" :key="image.id">
