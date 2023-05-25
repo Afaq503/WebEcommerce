@@ -20,12 +20,10 @@
           lg="3"
           v-for="product in paginatedProducts"
           :key="product.id">
-          <!-- <router-link
-            :to="{
-              name: 'SingleProduct',
-              params: { id: products.id },
-            }"> -->
-          <v-card max-width="400" class="d-flex align-content-end flex-wrap">
+          <v-card
+            @click="showSingleProduct(product)"
+            max-width="400"
+            class="d-flex align-content-end flex-wrap">
             <v-img
               :src="product.thumbnail"
               :alt="product.title"
@@ -78,7 +76,6 @@
               </v-card-text>
             </div>
           </v-card>
-          <!-- </router-link> -->
         </v-col>
       </v-row>
     </div>
@@ -134,6 +131,9 @@ export default {
         .catch((error) => {
           console.error("Error fetching products:", error);
         });
+    },
+    showSingleProduct(product) {
+      this.$router.push({ name: "SingleProduct", params: { id: product.id } });
     },
   },
 };

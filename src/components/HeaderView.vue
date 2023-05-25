@@ -13,9 +13,9 @@
     <v-list class="d-none d-lg-flex d-xl-none">
       <v-list-item value="home" to="/">Home</v-list-item>
       <v-list-item value="category" to="/category">Categories</v-list-item>
-      <v-list-item value="singleProduct" to="/singleproduct"
+      <!-- <v-list-item value="singleProduct" to="/product/:id"
         >SingleProduct</v-list-item
-      >
+      > -->
     </v-list>
 
     <v-spacer></v-spacer>

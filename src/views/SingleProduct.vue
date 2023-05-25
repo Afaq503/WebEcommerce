@@ -1,56 +1,68 @@
 <template>
-  <h1>SingleProduct</h1>
-  <v-card class="d-flex">
-    <v-img
-      class="align-end"
-      gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-      height="200px"
-      width="200px"
-      cover
-      ><v-card-title class="text-white">Title</v-card-title>
-    </v-img>
-    <div class="d-flex flex-column">
-      <v-card-subtitle class="pt-4"> Price: 200 </v-card-subtitle>
-      <v-card-text>
-        <div>Brand: Lenove</div>
-        <div>category: Tree</div>
-        <div class="text-center">
-          <v-rating
-            v-model="rating"
-            bg-color="orange-lighten-1"
-            color="blue"></v-rating>
-        </div>
-        <div class="text-center">
-          <v-btn
-            size="small"
-            color="blue"
-            variant="text"
-            icon="mdi-heart"></v-btn>
-
-          <v-btn
-            size="small"
-            color="blue"
-            variant="text"
-            icon="mdi-bookmark"></v-btn>
-
-          <v-btn
-            size="small"
-            color="blue"
-            variant="text"
-            icon="mdi-share-variant"></v-btn>
-          <v-btn
-            size="small"
-            color="blue"
-            variant="text"
-            icon="mdi-cart"></v-btn>
-        </div>
-      </v-card-text>
-    </div>
-  </v-card>
+  <div>
+    <HeaderView />
+    <v-container v-if="product">
+      <v-card>
+        <!-- Display product details here -->
+        <v-card-title class="text-h5">{{ product.title }}</v-card-title>
+        <v-img
+          :src="product.thumbnail"
+          :alt="product.title"
+          class="align-end"
+          gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+          height="400"
+          width="full"
+          ><v-card-title class="text-white">{{ product.title }}</v-card-title>
+        </v-img>
+        <v-card-text>
+          <div>Price: {{ product.price }}</div>
+          <div>DiscountPercentage: {{ product.discountPercentage }}</div>
+          <div>Stock: {{ product.stock }}</div>
+          <div>Brand: {{ product.brand }}</div>
+          <div>Category: {{ product.category }}</div>
+          <div>Description: {{ product.description }}</div>
+          <!-- Additional product details -->
+        </v-card-text>
+        <v-slide-group v-model="model" selected-class="bg-success" show-arrows>
+          <v-slide-group-item v-for="image in product.images" :key="image.id">
+            <v-col>
+              <v-img :src="image" height="200px" width="200px"></v-img>
+            </v-col>
+          </v-slide-group-item>
+        </v-slide-group>
+      </v-card>
+    </v-container>
+  </div>
 </template>
 
 <script>
-export default {};
-</script>
+import HeaderView from "../components/HeaderView.vue";
 
-<style></style>
+export default {
+  components: {
+    HeaderView,
+  },
+  data() {
+    return {
+      product: null,
+    };
+  },
+  mounted() {
+    const productId = this.$route.params.id;
+    this.fetchProduct(productId);
+  },
+  methods: {
+    fetchProduct(productId) {
+      const apiUrl = `https://dummyjson.com/products/${productId}`;
+      fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          this.product = data;
+        })
+        .catch((error) => {
+          console.error("Error fetching product:", error);
+        });
+    },
+  },
+};
+</script>
