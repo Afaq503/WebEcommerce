@@ -23,7 +23,7 @@ Password: 0lelplR
 
 ## For online use
 
-Link: https://crmtodo.netlify.app/#/
+Link: https://webe-commerce.netlify.app/
 
 ## Developed by Muhammad Afaq
 
