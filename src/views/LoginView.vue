@@ -16,7 +16,6 @@
             <v-card-text>
               <v-text-field
                 v-model="email"
-                :rules="emailRules"
                 required
                 color="blue"
                 type="email"
@@ -72,16 +71,16 @@ export default {
         (v) => (v && v.length >= 6) || "Password must be at least 6 characters",
       ],
       email: "",
-      emailRules: [
-        // (v) => !!v || "Email is required",
-        // (v) => /.+@.+\..+/.test(v) || "Email must be valid",
-      ],
+      // emailRules: [
+      // (v) => !!v || "Email is required",
+      // (v) => /.+@.+\..+/.test(v) || "Email must be valid",
+      // ],
       text: "",
     };
   },
   methods: {
     async validate() {
-      this.$refs.form.validatea().then((valid) => {
+      this.$refs.form.validate().then((valid) => {
         if (valid) {
           this.loading = true;
           fetch("https://dummyjson.com/auth/login", {
