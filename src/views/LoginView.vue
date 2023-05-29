@@ -17,11 +17,12 @@
               <v-text-field
                 v-model="email"
                 required
+                :rules="emailRules"
                 color="blue"
                 type="email"
-                label="Email"
-                placeholder="Email"
-                hint="Enter your email to access this website"
+                label="UserName"
+                placeholder="UserName"
+                hint="Enter your username to access this website"
                 prepend-inner-icon="mdi-account" />
               <v-text-field
                 v-model="password"
@@ -71,10 +72,7 @@ export default {
         (v) => (v && v.length >= 6) || "Password must be at least 6 characters",
       ],
       email: "",
-      // emailRules: [
-      // (v) => !!v || "Email is required",
-      // (v) => /.+@.+\..+/.test(v) || "Email must be valid",
-      // ],
+      emailRules: [(v) => !!v || "Username is required"],
       text: "",
     };
   },
@@ -96,7 +94,7 @@ export default {
                 console.log(res);
                 return res.json();
               } else {
-                throw new Error("Login failed. Please try again jamil.");
+                throw new Error("Login failed. Please try again ");
               }
             })
             .then((data) => {
