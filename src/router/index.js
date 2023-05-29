@@ -10,7 +10,6 @@ const routes = [
     path: "/",
     name: "home",
     component: HomeView,
-    meta: { requiresAuth: true },
   },
 
   {
@@ -22,7 +21,6 @@ const routes = [
     path: "/dashborad",
     name: "Dashborad",
     component: Dashborad,
-    meta: { requiresAuth: true },
   },
   {
     path: "/category",
